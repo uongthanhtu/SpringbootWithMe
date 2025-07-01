@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h6 th:text="'Current Role: ' + ${user.role}">Hello admin</h6>
+
+<h1>The list Books</h1>
+<br>
+<!--NUt new nam ngoai table an hien neu la admin000-->
+
+<a th:if="${role == 1}" th:href="@{/books/add}" > New Book</a>
+<br>
+<table>
+    <thead>
+    <!--        -->
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Date</th>
+        <th th:if="${role==1}">Actions</th>
+    </tr>
+
+    </thead>
+    <tbody>
+        <tr th:each=" b: ${book} ">
+            <td th:text="${p.id}"></td>
+            <td th:text="${p.name}">Name</td>
+            <td th:text="${p.price}">Price</td>
+            <td th:text="${p.price}">Price</td>
+            <td th:if="${role==1}"> <a th:href="@{'/products/edit/' + ${p.id}}">Sửa</a>  |
+                <a th:href="@{'/products/delete/' + ${p.id}}">Xóa</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>

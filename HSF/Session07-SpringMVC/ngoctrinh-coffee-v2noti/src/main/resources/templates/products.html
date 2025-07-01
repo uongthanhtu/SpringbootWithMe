@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>The list of Ngọc Trinh products</title>
+</head>
+<body>
+
+<!-- Script alert sau khi trang load xong -->
+<script th:if="${formMsg}" th:inline="javascript">
+    window.addEventListener('load', function() {
+        // Thymeleaf sẽ render thành: alert("…");
+        alert([[${formMsg}]]);
+    });
+</script>
+
+<h1>Cafe Ngọc Trinh System - Product list</h1>
+<h1 th:if="${formMsg}" th:text="'STATUS: ' + ${formMsg}" style="color:deeppink"></h1>
+<!-- ko xổ biến vì đây là hàng gửi ké model chính chủ từ bên post gửi sang -->
+<h1 th:if="${formMsg}" th:text="'PRODUCT NAME: ' + ${pname}" style="color:deeppink"></h1>
+
+<h3>The list of Ngọc Trinh coffee products</h3>
+
+<p>
+    <a th:href="@{'/products/create'}">Create a new product</a>
+</p>
+
+<table>
+    <thead>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Actions (Updatee|Delete)</th>
+    </thead>
+    <tbody>
+        <tr th:each="x : ${minzy}" >
+            <td th:text="${x.id}">???</td>
+            <td th:text="${x.name}">???</td>
+            <td th:text="${x.price}">???</td>
+            <td>
+                <a th:href="@{'/products/edit/' + ${x.id}}">Update</a> |
+                <a th:href="@{'/products/delete/' + ${x.id}}">Delete</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
