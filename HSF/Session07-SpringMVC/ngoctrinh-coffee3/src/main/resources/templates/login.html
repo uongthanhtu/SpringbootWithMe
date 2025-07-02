@@ -5,6 +5,21 @@
     <title>Title</title>
 </head>
 <body>
+    <h1>Login</h1>
 
+    <form th:object="${account}" th:action="@{'/login'}" method="post">
+        <p th:if="${#fields.hasGlobalErrors()}" th:text="${#fields.globalErrors()[0]}" style="color: red;"></p>
+        <p>
+            <label for="username" >Username</label>
+            <input id="username" th:field="*{username}" >
+            <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" style="color: red"></span>
+        </p>
+        <p>
+            <label for="password" >Password</label>
+            <input th:field="*{password}" id="password" >
+            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color: red"></span>
+        </p>
+        <input type="submit" value="Login">
+    </form>
 </body>
 </html>

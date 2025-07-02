@@ -3,6 +3,7 @@ package com.tusry.coffee.ngoctrinhcoffee3.config;
 import com.tusry.coffee.ngoctrinhcoffee3.entity.Account;
 import com.tusry.coffee.ngoctrinhcoffee3.entity.Category;
 import com.tusry.coffee.ngoctrinhcoffee3.entity.Product;
+import com.tusry.coffee.ngoctrinhcoffee3.service.AccountService;
 import com.tusry.coffee.ngoctrinhcoffee3.service.CategoryService;
 import com.tusry.coffee.ngoctrinhcoffee3.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ public class DataInitializer implements CommandLineRunner {
     CategoryService categoryService;
     @Autowired
     ProductService productService;
+    @Autowired
+    AccountService accountService;
 
 
     @Override
@@ -48,9 +51,10 @@ public class DataInitializer implements CommandLineRunner {
         categoryService.saveCategory(category3);
         categoryService.saveCategory(category4);
 
-        Account admin = new Account("admin", "admin123");
-        Account user = new Account("user", "user123");
+        Account admin = new Account("admin", "admin123", 1);
+        Account user = new Account("user", "user123", 2);
 
-
+        accountService.save(admin);
+        accountService.save(user);
     }
 }
