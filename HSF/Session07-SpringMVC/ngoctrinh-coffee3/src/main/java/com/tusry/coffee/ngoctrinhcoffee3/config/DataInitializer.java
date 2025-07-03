@@ -34,11 +34,11 @@ public class DataInitializer implements CommandLineRunner {
         categoryService.saveCategory(category3);
         categoryService.saveCategory(category4);
 
-        Product p1c1 = new Product("TS01", "Trà sữa hàng xóm nấu", 102, 25555);
-        Product p2c1 = new Product("TS02", "Trà sữa ngọc trinh nấu", 102, 125555);
-        Product p1c2 = new Product("CF01", "Cà phê java vị nguyên bản", 102, 5700000);
+        Product p1c1 = new Product("TS01", "Trà sữa hàng xóm nấu", 25555, 50);
+        Product p2c1 = new Product("TS02", "Trà sữa ngọc trinh nấu", 125555, 12);
+        Product p1c2 = new Product("CF01", "Cà phê java vị nguyên bản", 700000, 62);
 
-        Product p2c2 = new Product("CF02", "Cà phê java vị nguyên bản", 102, 5700000);
+        Product p2c2 = new Product("CF02", "Cà phê java vị nguyên bản" , 700000, 42);
 
         category1.addProduct(p1c1);
         category1.addProduct(p2c1);

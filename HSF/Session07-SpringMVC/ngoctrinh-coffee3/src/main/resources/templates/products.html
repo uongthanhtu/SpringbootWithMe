@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>List of Product</h1>
-    <a th:href="@{'/products/create'}">New Product</a>
+    <a th:if="${account.role == 1}" th:href="@{'/products/create'}">New Product</a>
     <table>
         <thead>
             <tr>
@@ -25,8 +25,8 @@
                 <td th:text="${p.quantity}"></td>
                 <td th:text="${p.price}"></td>
                 <td th:text="${p.category.name}"></td>
-                <td><a th:href="@{'/products/edit/'+ ${p.id}}">Edit</a></td>
-                <td><a th:href="@{'/products/delete/'+${p.id}}">Delete</a></td>
+                <td><a th:if="${account.role == 1}" th:href="@{'/products/edit/'+ ${p.id}}">Edit</a></td>
+                <td><a th:if="${account.role == 1}" th:href="@{'/products/delete/'+${p.id}}">Delete</a></td>
             </tr>
         </tbody>
     </table>

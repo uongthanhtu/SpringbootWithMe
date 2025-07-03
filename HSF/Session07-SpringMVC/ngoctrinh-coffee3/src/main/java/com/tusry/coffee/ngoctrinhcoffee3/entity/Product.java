@@ -1,17 +1,27 @@
 package com.tusry.coffee.ngoctrinhcoffee3.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Product {
     @Id
     @Column(name = "Id")
+    @NotBlank(message = "Id is required")
     private String id;
+    @NotBlank(message = "Name is required")
     @Column(name = "Name", nullable = false, columnDefinition = "NVARCHAR(50)")
     private String name;
     @Column(name = "Quantity", nullable = false)
+    @Max(value = 100, message = " The quantity need less than 100")
+    @Min(value = 10, message = " The quantity need more than 10 ")
     private int quantity;
     @Column(name = "Price", nullable = false)
+    @Max(value = 1000000, message = " The price need less than 1000000 ")
+    @Min(value = 20000, message = " The price need more than 20000 ")
     private double price;
 
     // relationship MANY TO ONE - NHIỀU SẢN PHẨM THÌ SẼ THUỘC VỀ 1 CATEGORY
