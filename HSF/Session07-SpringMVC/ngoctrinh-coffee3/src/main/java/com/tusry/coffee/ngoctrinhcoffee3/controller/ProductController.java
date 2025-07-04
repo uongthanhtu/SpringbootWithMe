@@ -70,4 +70,11 @@ public class ProductController {
         productService.saveProduct(product);
         return "redirect:/products";
     }
+
+    @GetMapping("/delete/{productId}")
+    public String deleteProduct(@PathVariable String productId) {
+        productService.deleteProduct(productId);
+        return "redirect:/products";
+    }
+
 }

@@ -24,10 +24,8 @@ public class Product {
     @Min(value = 20000, message = " The price need more than 20000 ")
     private double price;
 
-    // relationship MANY TO ONE - NHIỀU SẢN PHẨM THÌ SẼ THUỘC VỀ 1 CATEGORY
-    //                                  1 CATEGORY CÓ THỂ CÓ NHIỀU SẢN PHẨM
     @ManyToOne
-    @JoinColumn(name = "CateId") // cột khóa ngoại , phần DB
+    @JoinColumn(name = "CateId")
     private Category category;
 
     public Category getCategory() {

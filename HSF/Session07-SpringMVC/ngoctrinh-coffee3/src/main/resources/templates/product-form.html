@@ -27,9 +27,13 @@
             <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" style="color: red"></span>
         </p>
 
-        <select th:field="*{category}" >
-            <option th:each="c : ${category}" th:text="${c.name}" th:value="${c.id}" th:selected="${c.id == product.id}"></option>
-        </select>
+        <p>
+          <label for="category">Category</label>
+            <select id="category" th:field="*{category}" >
+                <option th:each="c : ${category}" th:text="${c.name}" th:value="${c.id}" th:selected="${ product.category != null and c.id == product.category.id}"></option>
+            </select>
+        </p>
+
         <input type="hidden" name="type" th:value="${type}" >
         <input type="submit" value="Submit" >
     </form>

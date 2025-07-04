@@ -1,4 +1,4 @@
-package com.tusry.coffee.ngoctrinhcoffee3.entity;
+package com.giaolang.coffee.entity;
 
 import jakarta.persistence.*;
 
@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "Category")
 public class Category {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Id")
@@ -15,28 +17,32 @@ public class Category {
     @Column(name = "Name", columnDefinition = "NVARCHAR(50)")
     private String name;
 
-    @Column(name = "Description", columnDefinition = "NVARCHAR(1000)")
+    @Column(name = "Description", columnDefinition = "NVARCHAR(100)")
     private String description;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "category")
-    private List<Product> productList = new ArrayList<Product>();
+    //MỐI QUAN HỆ VỚI PRODUCT..., 1 - N
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cate")
+    private List<Product> productList = new ArrayList<>();
 
-    public void addProduct(Product product) {
-        productList.add(product);
-        product.setCategory(this);
+    //CHO 1 SẢN PHẨM NÀO ĐÓ THUỘC VỀ CATEGORY NÀY
+    public void addProduct(Product o){
+        productList.add(o);
+        //chính trong object o cũng phải lưu thêm: tôi product đã lưu số anh cate nào
+        o.setCate(this);
     }
 
-    public void removeProduct(Product product) {
-        productList.remove(product);
-        product.setCategory(null);
+    public void removeProduct(Product o){
+        productList.remove(o);
+        o.setCate(null);
     }
 
     public Category() {
     }
 
+    //vì key tự tăng
     public Category(String name, String description) {
-        this.name = name;
         this.description = description;
+        this.name = name;
     }
 
     public Long getId() {

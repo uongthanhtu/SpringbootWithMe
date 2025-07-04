@@ -12,11 +12,6 @@ public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    // tạo hàm crud như truyền thống
-    // bài thi PE chỉ cần :
-    // hàm save(), để mình save data lúc khởi đầu
-    // hàm getAll(), để minh cung cấp cho drop-down
-
     public List<Category> getAll() {
         return categoryRepository.findAll();
     }
